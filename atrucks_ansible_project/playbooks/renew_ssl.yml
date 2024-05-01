@@ -1,0 +1,8 @@
+- name: Renew Let's Encrypt SSL Certificate
+  hosts: balancer
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Renew SSL certificate
+      command: certbot renew --nginx --quiet
+

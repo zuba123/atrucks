@@ -1,0 +1,17 @@
+- name: Configure Nginx
+  hosts: balancer
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Copy Nginx configuration file
+      copy:
+        src: roles/nginx/files/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+

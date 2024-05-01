@@ -1,0 +1,20 @@
+- name: Configure Let's Encrypt
+  hosts: balancer
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Install certbot package
+      package:
+        name: certbot
+        state: present
+    - name: Ensure nginx is running
+      service:
+        name: nginx
+        state: started
+    - name: Obtain SSL certificate
+      command: >
+        certbot certonly --non-interactive --agree-tos
+        --nginx
+        --email ekaterina_atrucks@atrucks.su
+        -d admin-test.atrucks.su
+

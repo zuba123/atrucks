@@ -1,0 +1,20 @@
+- name: Ensure certbot-auto is executable
+  command: chmod +x /usr/bin/certbot-auto
+  args:
+    creates: /usr/bin/certbot-auto
+- name: Ensure required directories exist for Let's Encrypt
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop:
+    - /var/www/letsencrypt
+    - /var/log/letsencrypt
+- name: Ensure nginx is reloaded
+  service:
+    name: nginx
+    state: reloaded
+  become: yes
+

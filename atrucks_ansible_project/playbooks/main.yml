@@ -1,0 +1,19 @@
+- name: Configure Nginx and Let's Encrypt
+  hosts: balancer
+  become: true
+  gather_facts: false
+  tasks:
+    - include_role:
+        name: nginx
+    
+    - include_role:
+        name: letsencrypt
+  
+    - name: Include nginx configuration playbook
+      include_playbook: nginx.yml
+
+    - name: Include Let's Encrypt configuration playbook
+      include_playbook: letsencrypt.yml
+
+    - name: Include SSL renewal playbook
+      include_playbook: renew_ssl.yml

@@ -1,0 +1,9 @@
+[balancer]
+balancer ansible_host=XX.XX.XX.XX
+
+[app_servers]
+app1 ansible_host=10.0.0.2
+app2 ansible_host=10.0.0.3
+
+[static_server]
+static ansible_host=10.0.0.4
