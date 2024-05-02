@@ -1,5 +1,5 @@
 [balancer]
-balancer ansible_host=XX.XX.XX.XX
+balancer ansible_host=admin-test.atrucks.su
 
 [app_servers]
 app1 ansible_host=10.0.0.2
